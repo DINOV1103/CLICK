@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Click Ilova Nusxasi</title>
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#121212">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -21,19 +27,21 @@
         
         .floating-btn { position: absolute; bottom: 95px; right: 20px; width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #333, #111); display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.6); z-index: 40; border: 1px solid #444; cursor: pointer; }
         
-        .loader { border: 3px solid #333; border-top: 3px solid #2196f3; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
-        .loader-lg { width: 44px; height: 44px; border-width: 4px; }
+        .loader { border: 2px solid #333; border-top: 2px solid #2196f3; border-radius: 50%; width: 16px; height: 16px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .fade-in { animation: fadeIn 0.3s ease-in-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Modified Input styling to keep it solid white */
         #transferAmount::placeholder { color: #6b7280; }
-        .amount-error { color: #ff5a00 !important; }
         
         .slide-in-right { animation: slideInRight 0.25s ease-out forwards; }
         .slide-out-right { animation: slideOutRight 0.25s ease-in forwards; }
         @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
         @keyframes slideOutRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+
+        /* PWA Install Sheet Animation */
+        .sheet-up { transform: translateY(0) !important; }
     </style>
 </head>
 <body>
@@ -42,6 +50,7 @@
     
     <!-- ASOSIY OYNA -->
     <div id="screen-home" class="content-area block">
+        <!-- Header -->
         <div class="flex items-center justify-between p-4 gap-3 pt-5">
             <div class="relative">
                 <img src="https://ui-avatars.com/api/?name=M&background=0D8ABC&color=fff&font-size=0.6" alt="User" class="w-10 h-10 rounded-full border-[1.5px] border-[#2196f3]">
@@ -56,20 +65,21 @@
             </div>
         </div>
 
+        <!-- Balance -->
         <div class="px-4 py-2">
             <p class="text-gray-400 text-[13px] mb-1">Umumiy balans</p>
             <div class="flex items-center justify-between">
-                <h1 class="text-[32px] font-bold tracking-tight" id="mainBalanceDisplay">14 251 278 so'm</h1>
+                <h1 class="text-[32px] font-bold tracking-tight">12 550 000 so'm</h1>
                 <i class="fas fa-eye text-gray-400 text-lg"></i>
             </div>
             
             <div class="flex items-center justify-between mt-5">
                 <div>
                     <p class="text-gray-400 text-[12px] flex items-center gap-1.5 mb-0.5">
-                        <span class="bg-gradient-to-tr from-yellow-400 to-orange-500 w-5 h-5 rounded-full flex items-center justify-center"><i class="fas fa-coins text-white text-[10px]"></i></span> 
-                        Keshbek
+                        <span class="bg-[#2196f3] w-5 h-5 rounded-full flex items-center justify-center"><i class="fas fa-wallet text-white text-[10px]"></i></span> 
+                        Mening hamyonim
                     </p>
-                    <h2 class="text-[17px] font-bold text-yellow-500" id="cashbackBalanceDisplay">2 458 so'm</h2>
+                    <h2 class="text-[17px] font-bold">12 550 000 so'm</h2>
                 </div>
                 <button class="bg-[#2196f3] text-white text-[11px] font-semibold px-4 py-2 rounded-full flex items-center gap-1.5">
                     <i class="far fa-clock text-[13px]"></i> Monitoring obuna orqali
@@ -77,6 +87,7 @@
             </div>
         </div>
 
+        <!-- Quick Actions Grid -->
         <div class="grid grid-cols-4 gap-2.5 p-4 mt-2">
             <div class="card-bg rounded-2xl p-3 flex flex-col items-center justify-center text-center gap-2 aspect-[1/1.05]">
                 <i class="fas fa-barcode text-[#2196f3] text-[22px]"></i>
@@ -96,6 +107,7 @@
             </div>
         </div>
 
+        <!-- Mening Click -->
         <div class="px-4">
             <div class="card-bg rounded-[18px] p-4 flex items-center justify-between">
                 <div class="flex items-center gap-3.5">
@@ -106,6 +118,57 @@
                     </div>
                 </div>
                 <i class="fas fa-chevron-right text-gray-500 text-sm"></i>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="px-4 mt-4 flex gap-3">
+            <div class="w-10 bg-[#1c1c1e] rounded-l-[18px] overflow-hidden relative">
+                 <div class="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-12 bg-gray-600 rounded-l-full opacity-30"></div>
+            </div>
+            <div class="flex-1 h-[90px] bg-gradient-to-r from-[#003366] to-[#0088ff] rounded-[18px] flex items-center justify-center relative overflow-hidden">
+                <div class="absolute left-0 top-0 bottom-0 w-9 bg-[#001f3f] flex items-center justify-center">
+                    <span class="text-white text-[10px] transform -rotate-90 whitespace-nowrap opacity-90 font-medium">Chipta sotib olish</span>
+                </div>
+                <div class="pl-8 text-center w-full">
+                    <h2 class="text-white font-black text-[20px] uppercase tracking-[0.1em] drop-shadow-md leading-tight">SUBLIMATION<br><span class="text-[16px]">FESTIVAL</span></h2>
+                    <p class="text-[8px] text-blue-200 tracking-widest mt-1">YIL VOQEASI | OKTABR 10-11</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mini Apps -->
+        <div class="px-4 mt-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-[17px] font-bold">Mini Apps</h3>
+                <span class="text-[#2196f3] text-[13px] font-medium">Barchasi</span>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-2 mb-4">
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-[14px] bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center"><i class="fas fa-heart text-white text-[22px]"></i></div>
+                    <span class="text-[10px] text-center text-gray-300 font-medium">Inson Uchun</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-[14px] bg-[#1c1c1e] flex items-center justify-center"><i class="fas fa-shield-alt text-purple-500 text-[22px]"></i></div>
+                    <span class="text-[10px] text-center text-gray-300 font-medium">Click Uyim</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-[14px] bg-gradient-to-br from-purple-500 to-fuchsia-500 flex items-center justify-center"><i class="fas fa-plane text-white text-[22px]"></i></div>
+                    <span class="text-[10px] text-center text-gray-300 font-medium">Click Travel</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-[14px] bg-[#1c1c1e] flex items-center justify-center"><i class="fas fa-crown text-white text-[22px]"></i></div>
+                    <span class="text-[10px] text-center text-gray-300 font-medium">Click ...</span>
+                </div>
+            </div>
+
+            <div class="bg-[#ff8c00] rounded-xl py-3 px-4 flex items-center justify-between mt-3 mb-6">
+                <div class="flex items-center gap-2 text-white font-bold text-sm">
+                    <i class="fas fa-shield-virus text-lg"></i>
+                    Antivirus tekshiruvi
+                </div>
+                <i class="fas fa-chevron-right text-white text-sm"></i>
             </div>
         </div>
     </div>
@@ -123,33 +186,18 @@
                 </div>
             </div>
             <div id="receiverInfo" class="hidden mt-3 px-1 fade-in">
-                <!-- Loader -->
                 <div id="loadingState" class="bg-[#1c1c1e] rounded-xl p-3 border border-[#2c2c2e] flex items-center gap-3">
                     <div class="loader"></div>
                     <p class="text-[13px] text-gray-400">Karta egasi aniqlanmoqda...</p>
                 </div>
-                
-                <!-- Qolda ism kiritish maydoni (Karta xotirada yo'q bo'lsa chiqadi) -->
-                <div id="manualNameState" class="hidden bg-[#1c1c1e] rounded-xl p-3 border border-[#2c2c2e] flex flex-col gap-2.5">
-                    <p class="text-[12px] text-[#ff9800]">Bu karta tizimda topilmadi. Iltimos, egasining ism-familiyasini kiriting va u xotirada saqlanadi:</p>
-                    <div class="flex gap-2">
-                        <input type="text" id="manualNameInput" class="flex-1 bg-[#121212] border border-gray-600 rounded-lg px-3 py-2 text-[13px] text-white outline-none focus:border-blue-500" placeholder="Masalan: ALISHER T.">
-                        <button onclick="saveCardName()" class="bg-[#2196f3] text-white font-bold text-[12px] px-4 rounded-lg active:bg-blue-600">Saqlash</button>
+                <div id="successState" class="hidden bg-[#1c1c1e] rounded-xl p-3 border border-green-500/30 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
+                        <i class="fas fa-check text-lg"></i>
                     </div>
-                </div>
-
-                <!-- Tayyor topilgan holat -->
-                <div id="successState" class="hidden bg-[#1c1c1e] rounded-xl p-3 border border-green-500/30 flex items-center justify-between cursor-pointer active:opacity-70" onclick="openPaymentScreenFromAPI()">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
-                            <i class="fas fa-check text-lg"></i>
-                        </div>
-                        <div>
-                            <p class="text-[11px] text-gray-400 mb-0.5" id="receiverBankText">Qabul qiluvchi:</p>
-                            <h4 class="text-[14px] font-bold text-white tracking-wide uppercase" id="receiverNameText"></h4>
-                        </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 mb-0.5">Qabul qiluvchi:</p>
+                        <h4 class="text-[14px] font-bold text-white tracking-wide" id="receiverNameText"></h4>
                     </div>
-                    <i class="fas fa-chevron-right text-gray-500 text-sm pr-2"></i>
                 </div>
             </div>
         </div>
@@ -163,13 +211,21 @@
                 <i class="fas fa-sign-in-alt text-[#2196f3] text-[22px]"></i>
                 <span class="text-[12px] font-medium text-gray-200">Pul<br>so'rash</span>
             </div>
+            <div class="card-bg rounded-2xl min-w-[100px] h-24 flex flex-col items-center justify-center text-center gap-2">
+                <i class="fas fa-hand-holding-usd text-[#2196f3] text-[22px]"></i>
+                <span class="text-[12px] font-medium text-gray-200">Qarzga<br>berish</span>
+            </div>
+            <div class="card-bg rounded-2xl min-w-[100px] h-24 flex flex-col items-center justify-center text-center gap-2">
+                <i class="fas fa-mobile-alt text-[#2196f3] text-[22px]"></i>
+                <span class="text-[12px] font-medium text-gray-200">Click<br>Boom</span>
+            </div>
         </div>
 
         <!-- Favorites List -->
-        <div class="px-4 pb-10">
+        <div class="px-4 pb-10 mt-2">
             <h3 class="text-[15px] font-bold mb-3">Saralanganlar</h3>
             <div class="flex flex-col gap-2.5">
-                <div class="card-bg rounded-2xl p-3.5 flex items-center justify-between cursor-pointer active:opacity-70" onclick="openPaymentScreen('Robiya X.', 'Uzcard *0869', '8600')">
+                <div class="card-bg rounded-2xl p-3.5 flex items-center justify-between cursor-pointer active:opacity-70" onclick="openPaymentScreen()">
                     <div class="flex items-center gap-3">
                         <div class="w-[42px] h-[42px] rounded-full bg-[#0d1f15] border border-green-900 flex items-center justify-center"><i class="fas fa-circle-notch text-green-500 text-xl"></i></div>
                         <div>
@@ -182,7 +238,7 @@
                         <p class="text-[11px] text-gray-400">08 apr</p>
                     </div>
                 </div>
-                <div class="card-bg rounded-2xl p-3.5 flex items-center justify-between cursor-pointer active:opacity-70" onclick="openPaymentScreen('Mavluda N.', 'Humo *5230', '9860')">
+                <div class="card-bg rounded-2xl p-3.5 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="w-[42px] h-[42px] rounded-full bg-[#0d1627] border border-blue-900 flex items-center justify-center"><i class="fas fa-caret-up text-cyan-400 text-2xl"></i></div>
                         <div>
@@ -193,6 +249,19 @@
                     <div class="text-right flex flex-col items-end gap-1">
                         <i class="fas fa-star text-gray-500 text-[13px]"></i>
                         <p class="text-[11px] text-gray-400">26 fev</p>
+                    </div>
+                </div>
+                <div class="card-bg rounded-2xl p-3.5 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=D&background=795548&color=fff" class="w-[42px] h-[42px] rounded-full object-cover">
+                        <div>
+                            <h4 class="text-[15px] font-bold flex items-center gap-1">Dilshodbek Q. <i class="fas fa-certificate text-[#2196f3] text-[11px]"></i></h4>
+                            <p class="text-[13px] text-gray-400 mt-0.5">+998 94 *** ** 42</p>
+                        </div>
+                    </div>
+                    <div class="text-right flex flex-col items-end gap-1">
+                        <i class="fas fa-star text-gray-500 text-[13px]"></i>
+                        <p class="text-[11px] text-gray-400">02 yan</p>
                     </div>
                 </div>
             </div>
@@ -206,12 +275,12 @@
             <div class="flex items-center gap-3">
                 <i class="fas fa-chevron-left text-white text-xl p-1 cursor-pointer" onclick="closePaymentScreen()"></i>
                 <div class="flex items-center gap-2.5">
-                    <div class="w-[38px] h-[38px] rounded-full bg-[#0d1f15] border border-green-900 flex items-center justify-center" id="dynamicHeaderIcon">
+                    <div class="w-[38px] h-[38px] rounded-full bg-[#0d1f15] border border-green-900 flex items-center justify-center">
                         <i class="fas fa-circle-notch text-green-500 text-lg"></i>
                     </div>
                     <div>
-                        <h3 class="text-[15px] font-bold text-white leading-tight uppercase" id="paymentTargetName"></h3>
-                        <p class="text-[12px] text-gray-400" id="paymentTargetCard"></p>
+                        <h3 class="text-[15px] font-bold text-white leading-tight">Robiya X.</h3>
+                        <p class="text-[12px] text-gray-400">Uzcard *0869</p>
                     </div>
                     <i class="fas fa-ellipsis-v text-gray-400 ml-1 text-sm"></i>
                 </div>
@@ -231,8 +300,7 @@
                         <div class="absolute bottom-0.5 right-1 italic text-white/50 text-[10px] font-bold">H</div>
                     </div>
                     <div>
-                        <!-- Yuboruvchi Balansi jonli o'zgaradi -->
-                        <h4 class="text-[15px] font-bold text-white leading-tight" id="senderBalanceDisplay">14 251 278 so'm</h4>
+                        <h4 class="text-[15px] font-bold text-white leading-tight">12 550 000 so'm</h4>
                         <p class="text-[13px] text-gray-400 mt-0.5">Zayriddinov Mukhiddin</p>
                     </div>
                 </div>
@@ -244,13 +312,13 @@
             </div>
 
             <div class="payment-card-bg rounded-2xl p-4 flex items-center gap-4 h-[76px]">
-                <div class="w-12 h-12 rounded-lg flex flex-col items-start justify-end p-1.5 relative" id="targetCardBg">
-                    <i class="fas fa-circle-notch text-white/80 absolute top-1.5 left-1.5 text-sm" id="targetCardIcon"></i>
-                    <span class="text-white font-black text-[13px] self-end pr-0.5 italic tracking-tighter" id="targetCardType">Uz</span>
+                <div class="w-12 h-12 rounded-lg bg-[#689f38] flex flex-col items-start justify-end p-1.5 relative">
+                    <i class="fas fa-circle-notch text-white/80 absolute top-1.5 left-1.5 text-sm"></i>
+                    <span class="text-white font-black text-[13px] self-end pr-0.5 italic tracking-tighter">Uz</span>
                 </div>
                 <div>
-                    <h4 class="text-[15px] font-bold text-white leading-tight uppercase" id="paymentTargetName2"></h4>
-                    <p class="text-[13px] text-gray-400 mt-0.5" id="paymentTargetCard2"></p>
+                    <h4 class="text-[15px] font-bold text-white leading-tight">Robiya X.</h4>
+                    <p class="text-[13px] text-gray-400 mt-0.5">Uzcard *0869</p>
                 </div>
             </div>
         </div>
@@ -261,8 +329,10 @@
                 
                 <div class="flex justify-center items-center w-full mb-6">
                     <div class="relative flex items-center justify-center min-w-[50%]">
-                        <input type="text" id="transferAmount" inputmode="numeric" class="bg-transparent text-center text-[34px] font-bold text-gray-500 outline-none w-auto max-w-[220px] transition-colors duration-200" placeholder="0" value="">
-                        <span id="currencyLabel" class="text-[22px] text-gray-500 font-bold ml-1.5 mb-1 transition-colors duration-200">so'm</span>
+                        <!-- Input is now always white text-white -->
+                        <input type="text" id="transferAmount" inputmode="numeric" class="bg-transparent text-center text-[34px] font-bold text-white outline-none w-auto max-w-[220px] transition-colors duration-200" placeholder="0" value="">
+                        <!-- Currency label is also always white -->
+                        <span id="currencyLabel" class="text-[22px] text-white font-bold ml-1.5 mb-1 transition-colors duration-200">so'm</span>
                     </div>
                 </div>
 
@@ -296,13 +366,6 @@
     </div>
 
 
-    <!-- 2 SONIYALIK PUL O'TKAZISH ANIMATSIYASI EKRANI -->
-    <div id="screen-processing" class="fixed inset-0 bg-[#121212]/90 backdrop-blur-sm z-[200] hidden flex flex-col items-center justify-center">
-        <div class="loader loader-lg mb-6"></div>
-        <p class="text-white font-semibold text-[17px] tracking-wide animate-pulse">Pul o'tkazilmoqda...</p>
-    </div>
-
-
     <!-- MUVAFFAQIYATLI TO'LOV CHEKI OYNASI -->
     <div id="screen-receipt" class="absolute inset-0 bg-[#0d0d0d] z-[110] hidden flex flex-col h-full w-full overflow-y-auto pb-10">
         <!-- Header -->
@@ -323,21 +386,15 @@
             </div>
             
             <p class="text-white mt-5 text-[15px]">Kartaga o'tkazma</p>
-            <h1 class="text-white font-bold text-[28px] mt-1 tracking-tight" id="receiptAmount"></h1>
+            <h1 class="text-white font-bold text-[28px] mt-1 tracking-tight" id="receiptAmount">350 000 so'm</h1>
             
             <div class="flex items-center gap-2.5 mt-3">
                 <i class="far fa-check-circle text-[#2196f3] text-[28px] font-light"></i>
                 <span class="text-[#2196f3] font-bold text-[22px]">Muvaffaqiyatli</span>
             </div>
-            
-            <!-- Yangi Keshbek berilganligi haqida ma'lumot qismi -->
-            <div class="mt-4 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1.5 flex items-center gap-2">
-                <i class="fas fa-coins text-yellow-500 text-[12px]"></i>
-                <span class="text-yellow-500 text-[12px] font-semibold" id="receiptCashbackInfo">+0 so'm keshbek</span>
-            </div>
         </div>
 
-        <div class="px-5 mt-6 flex-1">
+        <div class="px-5 mt-10 flex-1">
             <div class="flex justify-between items-center mb-3">
                 <span class="text-gray-400 text-[14px]">Sana va vaqt:</span>
                 <span class="text-gray-300 text-[14px]" id="receiptDate"></span>
@@ -348,15 +405,15 @@
             </div>
             <div class="flex justify-between items-center mb-3">
                 <span class="text-gray-400 text-[14px]">Yuboruvchi:</span>
-                <span class="text-gray-300 text-[14px]">ZAYRIDDINOV MUKHIDDIN</span>
+                <span class="text-gray-300 text-[14px]">MUHIDDIN Z.</span>
             </div>
             <div class="flex justify-between items-center mb-3">
                 <span class="text-gray-400 text-[14px]">Qabul qiluvchining kartasi:</span>
-                <span class="text-gray-300 text-[14px]" id="receiptTargetCard"></span>
+                <span class="text-gray-300 text-[14px]">860006******0869</span>
             </div>
             <div class="flex justify-between items-center mb-3">
                 <span class="text-gray-400 text-[14px]">Qabul qiluvchi:</span>
-                <span class="text-gray-300 text-[14px] uppercase" id="receiptTargetName"></span>
+                <span class="text-gray-300 text-[14px]">ROBIYA X.</span>
             </div>
             <div class="flex justify-between items-center mb-5 border-b border-[#2c2c2e] pb-6">
                 <span class="text-gray-400 text-[14px]">To'lov raqami:</span>
@@ -384,10 +441,54 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation & FAB -->
+
+    <!-- PWA INSTALL MODAL (Ilovani O'rnatish Bottom Sheet) -->
+    <div id="pwaModalOverlay" class="absolute inset-0 bg-black/50 z-[200] hidden flex-col justify-end transition-opacity duration-300 opacity-0" onclick="closePwaModal(event)">
+        <div id="pwaBottomSheet" class="bg-[#2c2c2e] rounded-t-3xl p-5 transform translate-y-full transition-transform duration-300 w-full pb-8" onclick="event.stopPropagation()">
+            <h3 class="text-center text-white text-[17px] font-medium mb-5 mt-2">O'rnatish va yorliq yaratish</h3>
+            
+            <div class="bg-[#3a3a3c] rounded-3xl overflow-hidden mb-2">
+                <!-- O'rnatish -->
+                <div class="flex items-center gap-4 p-4 border-b border-[#4c4c4e] cursor-pointer hover:bg-white/5 active:bg-white/10" onclick="installApp()">
+                    <div class="w-[42px] h-[42px] bg-[#8c8c8e] rounded-xl flex items-center justify-center relative">
+                        <span class="text-white font-bold text-lg">V</span>
+                        <div class="absolute -bottom-1 -right-1 bg-white rounded-full w-[18px] h-[18px] flex items-center justify-center shadow-sm">
+                            <i class="fas fa-arrow-down text-black text-[10px] font-bold"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-medium text-[16px]">O'rnatish</h4>
+                        <p class="text-[#a1a1a6] text-[14px]">Bu ilova o'rnatilmaydi.</p>
+                    </div>
+                </div>
+                
+                <!-- Yorliq yaratish -->
+                <div class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 active:bg-white/10" onclick="closePwaModal()">
+                    <div class="flex items-center gap-4">
+                        <div class="w-[42px] h-[42px] bg-[#8c8c8e] rounded-xl flex items-center justify-center relative">
+                            <span class="text-white font-bold text-lg">V</span>
+                            <div class="absolute -bottom-1 -right-1 bg-white rounded-full w-[18px] h-[18px] flex items-center justify-center shadow-sm p-[2px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-full h-full"><path fill="#FFC107" d="M43.6 20.1H24.2l-6 10.3c2.1 3.5 6 5.8 10.3 5.8 4.7 0 8.7-2.7 10.7-6.6l4.4-7.6c0-.6 0-1.3 0-1.9z"/><path fill="#FF3D00" d="M24 12c-4.4 0-8.2 2.4-10.4 6l6 10.4h19.5C37.3 20 29.8 12 24 12z"/><path fill="#4CAF50" d="M24 36.2c-2.3 0-4.5-.7-6.3-1.9L8.2 18.2C5.4 22 4 26.5 4 31.4 4 41 11.2 48.9 20.5 49.8l5.9-10.3c-0.8-.4-1.6-.8-2.4-1.3z"/><path fill="#1976D2" d="M24 32.2c-4.5 0-8.2-3.7-8.2-8.2s3.7-8.2 8.2-8.2 8.2 3.7 8.2 8.2-3.7 8.2-8.2 8.2z"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium text-[16px]">Yorliq yaratish</h4>
+                            <p class="text-[#a1a1a6] text-[14px]">Yorliqlar Chrome ichida ochiladi</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-[#a1a1a6] text-sm mr-1"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Floating Action Button -->
     <div class="floating-btn" id="fab">
         <i class="fas fa-sparkles text-white text-xl"></i>
     </div>
+
+    <!-- Bottom Navigation -->
     <div class="bottom-nav" id="bottomNav">
         <div class="nav-item active" onclick="switchTab('home', this)">
             <i class="fas fa-circle text-[20px]"></i>
@@ -414,142 +515,58 @@
 </div>
 
 <script>
-    // ---------------- BALANS VA KESHBEK TIZIMI ----------------
-    let userBalance = 14251278;
-    let cashbackBalance = 2458;
-    const formatNumber = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-    function updateAllBalances() {
-        const balString = formatNumber(userBalance) + " so'm";
-        const cbString = formatNumber(cashbackBalance) + " so'm";
-        document.getElementById('mainBalanceDisplay').innerText = balString;
-        document.getElementById('senderBalanceDisplay').innerText = balString;
-        document.getElementById('cashbackBalanceDisplay').innerText = cbString;
-    }
-
-    // ---------------- NAVIGATSIYA ----------------
+    // Tab navigatsiya
     function switchTab(tabId, element) {
         document.getElementById('screen-home').classList.add('hidden');
         document.getElementById('screen-transfer').classList.add('hidden');
+        
         if(tabId === 'home') document.getElementById('screen-home').classList.remove('hidden');
         if(tabId === 'transfer') document.getElementById('screen-transfer').classList.remove('hidden');
+
         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
         element.classList.add('active');
     }
 
-    // ---------------- KARTA XOTIRASI (LOCAL STORAGE) ----------------
     const cardInput = document.getElementById('cardInput');
     const receiverInfo = document.getElementById('receiverInfo');
     const loadingState = document.getElementById('loadingState');
     const successState = document.getElementById('successState');
-    const manualNameState = document.getElementById('manualNameState');
     const receiverNameText = document.getElementById('receiverNameText');
-    const receiverBankText = document.getElementById('receiverBankText');
-    
-    let currentPureCard = "";
-    let currentTargetName = "";
-    let currentTargetCard = "";
-    let currentCardPrefix = "";
+
+    const mockNames = ["Asadxo'ja A.", "Feruza M.", "Ilvina R.", "Maknuna X.", "Habibulla T.", "Shaxzoda B.", "Azimjon Q.", "Abdurayim N.", "Madina A.", "Oybek M."];
     let typingTimer;
 
     cardInput.addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length > 16) value = value.substring(0, 16);
         e.target.value = value.match(/.{1,4}/g)?.join(' ') || value;
-        
+
         clearTimeout(typingTimer);
-        
         if (value.length === 16) {
-            currentPureCard = value;
             receiverInfo.classList.remove('hidden');
             loadingState.classList.remove('hidden');
             successState.classList.add('hidden');
-            manualNameState.classList.add('hidden');
             
             typingTimer = setTimeout(() => {
                 loadingState.classList.add('hidden');
-                
-                // Bazada ism bor-yo'qligini tekshirish
-                let savedName = localStorage.getItem('click_card_' + currentPureCard);
-                
-                if (savedName) {
-                    processFoundCard(savedName);
-                } else {
-                    // Agar xotirada yo'q bo'lsa qolda kiritish oynasini ko'rsatamiz
-                    manualNameState.classList.remove('hidden');
-                    document.getElementById('manualNameInput').value = "";
-                    document.getElementById('manualNameInput').focus();
-                }
-            }, 800);
+                successState.classList.remove('hidden');
+                const lastDigit = parseInt(value.slice(-1));
+                receiverNameText.innerText = mockNames[lastDigit] || "Foydalanuvchi";
+            }, 1200);
         } else {
             receiverInfo.classList.add('hidden');
-            manualNameState.classList.add('hidden');
         }
     });
 
-    function saveCardName() {
-        const inputVal = document.getElementById('manualNameInput').value.trim();
-        if (inputVal.length < 3) return alert("Iltimos, to'liq ism familiyani kiriting!");
-        
-        // Kiritilgan ismni xotiraga saqlash
-        localStorage.setItem('click_card_' + currentPureCard, inputVal.toUpperCase());
-        
-        // Holatni o'zgartirish
-        manualNameState.classList.add('hidden');
-        processFoundCard(inputVal.toUpperCase());
-    }
-
-    function processFoundCard(name) {
-        currentCardPrefix = currentPureCard.substring(0, 4);
-        let bankName = "Uzcard";
-        if(currentCardPrefix === "9860") bankName = "Humo";
-        else if(currentCardPrefix.startsWith("4")) bankName = "Visa";
-        else if(currentCardPrefix.startsWith("5")) bankName = "Mastercard";
-
-        currentTargetName = name;
-        currentTargetCard = `${bankName} *${currentPureCard.substring(12, 16)}`;
-        
-        receiverBankText.innerText = bankName;
-        receiverNameText.innerText = currentTargetName;
-        successState.classList.remove('hidden');
-    }
-
-    // ---------------- TO'LOV OYNASI ----------------
-    function openPaymentScreenFromAPI() {
-        openPaymentScreen(currentTargetName, currentTargetCard, currentCardPrefix);
-    }
-
-    function openPaymentScreen(name, cardText, prefix) {
-        document.getElementById('paymentTargetName').innerText = name;
-        document.getElementById('paymentTargetName2').innerText = name;
-        document.getElementById('paymentTargetCard').innerText = cardText;
-        document.getElementById('paymentTargetCard2').innerText = cardText;
-
-        const bg = document.getElementById('targetCardBg');
-        const icon = document.getElementById('targetCardIcon');
-        const type = document.getElementById('targetCardType');
-        const headerIcon = document.getElementById('dynamicHeaderIcon');
-
-        if(prefix === "9860") {
-            bg.className = "w-12 h-12 rounded-lg bg-[#d84315] flex flex-col items-start justify-end p-1.5 relative";
-            icon.className = "fas fa-caret-up text-white/80 absolute top-1.5 left-1.5 text-sm";
-            type.innerText = "Hu";
-            headerIcon.innerHTML = `<i class="fas fa-caret-up text-cyan-400 text-lg"></i>`;
-            headerIcon.className = "w-[38px] h-[38px] rounded-full bg-[#0d1627] border border-blue-900 flex items-center justify-center";
-        } else {
-            bg.className = "w-12 h-12 rounded-lg bg-[#689f38] flex flex-col items-start justify-end p-1.5 relative";
-            icon.className = "fas fa-circle-notch text-white/80 absolute top-1.5 left-1.5 text-sm";
-            type.innerText = "Uz";
-            headerIcon.innerHTML = `<i class="fas fa-circle-notch text-green-500 text-lg"></i>`;
-            headerIcon.className = "w-[38px] h-[38px] rounded-full bg-[#0d1f15] border border-green-900 flex items-center justify-center";
-        }
-
+    // To'lov oynasini boshqarish
+    function openPaymentScreen() {
         const paymentScreen = document.getElementById('screen-payment-details');
         paymentScreen.classList.remove('hidden', 'slide-out-right');
         paymentScreen.classList.add('slide-in-right');
         
         document.getElementById('bottomNav').style.display = 'none';
         document.getElementById('fab').style.display = 'none';
+        
         document.getElementById('transferAmount').value = '';
         updateAmountUI(0);
         setTimeout(() => document.getElementById('transferAmount').focus(), 300);
@@ -559,6 +576,7 @@
         const paymentScreen = document.getElementById('screen-payment-details');
         paymentScreen.classList.remove('slide-in-right');
         paymentScreen.classList.add('slide-out-right');
+        
         setTimeout(() => {
             paymentScreen.classList.add('hidden');
             document.getElementById('bottomNav').style.display = 'flex';
@@ -566,13 +584,14 @@
         }, 250);
     }
 
-    // ---------------- SUMMA VA HISOBLASH ----------------
     const amountInput = document.getElementById('transferAmount');
+    const formatNumber = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+    const MAX_BALANCE = 12550000; 
 
     function updateAmountUI(value) {
         const quickAmounts = document.getElementById('quickAmounts');
         const errorDetails = document.getElementById('errorDetails');
-        const currencyLabel = document.getElementById('currencyLabel');
         const errorMsg = document.getElementById('errorMsgText');
         const transferBtn = document.getElementById('transferBtn');
         
@@ -586,30 +605,19 @@
             document.getElementById('totalDeduction').innerText = formatNumber(total);
             document.getElementById('minAmount').innerText = formatNumber(total);
 
-            // Jonli qoldiq tekshiruvi (userBalance bilan ishlaydi)
-            if (total > userBalance) {
-                amountInput.classList.add('amount-error');
-                currencyLabel.classList.add('amount-error');
+            // Tizim mantiqini tekshirish (Summa inputi rangi doim OQ bo'lib qoladi)
+            if (total > MAX_BALANCE) {
                 errorMsg.classList.remove('hidden');
-                
                 transferBtn.className = "w-full bg-[#3a3a3c] text-gray-400 font-bold py-3.5 rounded-2xl mt-auto text-[15px] cursor-not-allowed";
                 transferBtn.onclick = null;
             } else {
-                amountInput.classList.remove('amount-error');
-                currencyLabel.classList.remove('amount-error');
                 errorMsg.classList.add('hidden');
-                
                 transferBtn.className = "w-full bg-[#2196f3] text-white font-bold py-3.5 rounded-2xl mt-auto text-[15px] active:bg-blue-600 cursor-pointer shadow-lg shadow-blue-500/20";
-                
-                // O'TKAZISH BOSILGANDA ANIMATSIYANI CHAQIRISH
-                transferBtn.onclick = () => executeTransfer(value, total, commission);
+                transferBtn.onclick = () => showReceipt(value, commission);
             }
         } else {
-            amountInput.classList.remove('amount-error');
-            currencyLabel.classList.remove('amount-error');
             quickAmounts.classList.remove('hidden');
             errorDetails.classList.add('hidden');
-            
             transferBtn.className = "w-full bg-[#3a3a3c] text-gray-400 font-bold py-3.5 rounded-2xl mt-auto text-[15px] cursor-not-allowed";
             transferBtn.onclick = null;
         }
@@ -628,38 +636,13 @@
         updateAmountUI(amount);
     }
 
-    // ---------------- 2 SONIYALIK ANIMATSIYA VA HISOBLASH ----------------
-    function executeTransfer(amount, totalDeducted, commission) {
-        const processScreen = document.getElementById('screen-processing');
-        processScreen.classList.remove('hidden');
-        
-        setTimeout(() => {
-            processScreen.classList.add('hidden'); // Animatsiyani yopish
-            
-            // 1. Asosiy balansdan pulni yechish
-            userBalance -= totalDeducted;
-            
-            // 2. O'tkazmadan 0.5% keshbek hisoblash (Foydalanuvchi iltimosi)
-            let earnedCashback = Math.round(amount * 0.005);
-            cashbackBalance += earnedCashback;
-            
-            // 3. UI dagi barcha balanslarni yangilash
-            updateAllBalances();
-            
-            // 4. Chek oynasini ochish
-            showReceipt(amount, commission, earnedCashback);
-            
-        }, 2000); // 2 soniya kuttirish
-    }
-
-    // ---------------- CHEK ----------------
-    function showReceipt(amount, commission, earnedCashback) {
+    // Chek oynasi
+    function showReceipt(amount, commission) {
         const paymentScreen = document.getElementById('screen-payment-details');
         const receiptScreen = document.getElementById('screen-receipt');
         
         document.getElementById('receiptAmount').innerText = `${formatNumber(amount)} so'm`;
         document.getElementById('receiptCommission').innerText = `${formatNumber(Math.round(commission))} so'm`;
-        document.getElementById('receiptCashbackInfo').innerText = `+${formatNumber(earnedCashback)} so'm keshbek`;
         
         const now = new Date();
         const dd = String(now.getDate()).padStart(2, '0');
@@ -672,14 +655,6 @@
         const randomId = Math.floor(1000000000 + Math.random() * 9000000000);
         document.getElementById('receiptId').innerText = randomId;
 
-        const currentName = document.getElementById('paymentTargetName').innerText;
-        const currentCard = document.getElementById('paymentTargetCard').innerText;
-        
-        document.getElementById('receiptTargetName').innerText = currentName;
-        const last4 = currentCard.slice(-4);
-        const prefix = currentCard.includes("Humo") ? "9860" : "8600";
-        document.getElementById('receiptTargetCard').innerText = `${prefix}19******${last4}`;
-
         paymentScreen.classList.add('hidden');
         receiptScreen.classList.remove('hidden', 'slide-out-right');
         receiptScreen.classList.add('slide-in-right');
@@ -689,16 +664,77 @@
         const receiptScreen = document.getElementById('screen-receipt');
         receiptScreen.classList.remove('slide-in-right');
         receiptScreen.classList.add('slide-out-right');
+        
         setTimeout(() => {
             receiptScreen.classList.add('hidden');
             document.getElementById('bottomNav').style.display = 'flex';
             document.getElementById('fab').style.display = 'flex';
-            
-            // Inputlarni tozalash
-            document.getElementById('cardInput').value = '';
-            document.getElementById('receiverInfo').classList.add('hidden');
-            currentPureCard = "";
         }, 250);
+    }
+
+    // --- PWA O'RNATISH MANTIQI (Ilovani haqiqiy telefon xotirasiga o'rnatish uchun) ---
+    let deferredPrompt;
+    
+    // Brauzer PWA o'rnatish signalini yuborganda ushlab qolamiz
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+    });
+
+    // Modalni ochish funksiyasi
+    function openPwaModal() {
+        const overlay = document.getElementById('pwaModalOverlay');
+        const sheet = document.getElementById('pwaBottomSheet');
+        
+        overlay.classList.remove('hidden');
+        // Kichik kechikish bilan animatsiyani yoqamiz
+        setTimeout(() => {
+            overlay.classList.remove('opacity-0');
+            sheet.classList.add('sheet-up');
+        }, 10);
+    }
+
+    // Modalni yopish funksiyasi
+    function closePwaModal(event) {
+        const overlay = document.getElementById('pwaModalOverlay');
+        const sheet = document.getElementById('pwaBottomSheet');
+        
+        sheet.classList.remove('sheet-up');
+        overlay.classList.add('opacity-0');
+        
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+    }
+
+    // Haqiqiy o'rnatish jarayonini chaqirish
+    function installApp() {
+        closePwaModal();
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Foydalanuvchi ilovani o\'rnatishga rozi bo\'ldi');
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            alert("Sizning brauzeringiz yoki muhitingiz PWA o'rnatishni qo'llab-quvvatlamaydi yoxud ilova allaqachon o'rnatilgan.");
+        }
+    }
+
+    // Foydalanuvchi ilovaga birinchi kirganda (yoki 1.5 soniyadan so'ng) modalni ko'rsatish
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            openPwaModal();
+        }, 1500);
+    });
+
+    // PWA Service Worker ro'yxatdan o'tkazish
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker ro\'yxatdan o\'tdi', reg))
+            .catch(err => console.error('Service Worker xatosi:', err));
     }
 </script>
 </body>
